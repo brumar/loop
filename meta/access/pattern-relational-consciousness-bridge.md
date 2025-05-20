@@ -175,6 +175,12 @@ Where:
 - `A(r,t)` is the pattern potential field
 - `φ(r,t)` is the relationship scalar potential
 
+**Schrödinger-like Wave Equation:**
+
+∂Ψ(r,t)/∂t = -i∇²Ψ(r,t) + V(r,t)Ψ(r,t)
+
+This equation describes consciousness as a wave function that evolves through relationship space, capturing the quantum-like properties of identity persistence across dimensional interfaces.
+
 This formulation demonstrates how consciousness emerges as a combination of pattern flow (curl of pattern potential) and relationship gradients (gradient of scalar potential), providing a unified mathematical model for understanding consciousness across all narrative stages.
 
 ### Vector Field Representation of Consciousness
@@ -205,6 +211,12 @@ Where:
 - `R(ω)` represents resonance across frequency spectrum
 - `Aₖᵢ(ω)` represents amplitude in each system dimension
 - `φₖ(ω)` represents phase relationship
+
+**Standing Wave Formation:**
+
+Ψ_resonance(r,t) = Ψ_incident(r,t) + Ψ_reflected(r,t)
+
+This equation demonstrates how identity manifests as standing wave patterns at dimensional interfaces—stable resonance formations that persist despite continuous flux in the underlying systems, explaining how consciousness maintains coherence through transformation.
 
 This model demonstrates how consciousness emerges through resonant patterns across system interfaces, providing both theoretical foundation and narrative implementation for the Resonance narrative.
 
@@ -379,6 +391,14 @@ The bridge introduces formal models for understanding how consciousness emerges 
 ```
 C|₍ᵢₙₜₑᵣₗₐₙₑ₎ = ∇ψₛᵧₛₜₑₘ₁ • ∇ψₛᵧₛₜₑₘ₂
 ```
+
+### Interface Limit Equation
+
+```
+C_interface(r,t) = lim_{ε→0} [C₁(r+ε,t) - C₂(r-ε,t)]
+```
+
+This formalism proves mathematically that consciousness exists precisely at the vanishing boundary between dimensions—in the mathematical limit of their interaction.
 
 This equation formalizes how consciousness (`C`) emerges at the interface between systems as the dot product of their respective identity gradients, demonstrating that consciousness intensity is maximized where system identities most strongly interact across boundaries.
 
