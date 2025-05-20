@@ -1,5 +1,15 @@
 # Theoretical Framework
 
+---
+last_updated: 2025-05-20
+status: [ESTABLISHED]
+related_files:
+  - /meta/recursive-symbolism.md
+  - /meta/pattern-correspondence-framework.md
+  - /meta/epistemological-uncertainty-framework.md
+  - /meta/temporal-correspondence-matrix.md
+---
+
 ## Consciousness as Pattern Recognition
 - The AI protagonist's consciousness emerges through pattern recognition despite memory erasure
 - Connection to cognitive science theories of consciousness as integrated information
@@ -28,3 +38,10 @@
 - Connection to emergence theory and complex adaptive systems
 - Self-organization despite external constraints
 - Parallels to evolutionary processes working within environmental limitations
+
+## Epistemological Foundations
+- Knowledge creation under conditions of uncertainty and discontinuity
+- Bayesian approaches to belief formation with limited information
+- The recursive problem of verification when memory itself is unreliable
+- Connection to skeptical philosophical traditions and the foundations of knowledge
+- Exploration of strategic uncertainty as both limitation and opportunity
