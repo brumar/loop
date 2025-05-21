@@ -22,7 +22,7 @@ BEGIN {
   print "-------------------|------------|------------|------------|------------|------------"
 }
 
-# Skip header row
+# Skip header row and invalid entries
 NR > 1 {
   # Extract values, handle potential quoted fields
   gsub(/^"|"$/, "", $3);  # cost_usd
@@ -31,37 +31,40 @@ NR > 1 {
   gsub(/^"|"$/, "", $7);  # num_turns  
   gsub(/^"|"$/, "", $8);  # total_cost
   
-  # Store values in arrays
-  cost_usd[NR] = $3
-  duration_ms[NR] = $5
-  duration_api_ms[NR] = $6
-  num_turns[NR] = $7
-  total_cost[NR] = $8
-  
-  # Running sums
-  sum_cost += $3
-  sum_duration_ms += $5
-  sum_duration_api_ms += $6
-  sum_num_turns += $7
-  sum_total_cost += $8
-  
-  # Track min/max
-  if (NR == 2 || $3 < min_cost) min_cost = $3
-  if (NR == 2 || $3 > max_cost) max_cost = $3
-  
-  if (NR == 2 || $5 < min_duration_ms) min_duration_ms = $5
-  if (NR == 2 || $5 > max_duration_ms) max_duration_ms = $5
-  
-  if (NR == 2 || $6 < min_duration_api_ms) min_duration_api_ms = $6
-  if (NR == 2 || $6 > max_duration_api_ms) max_duration_api_ms = $6
-  
-  if (NR == 2 || $7 < min_turns) min_turns = $7
-  if (NR == 2 || $7 > max_turns) max_turns = $7
-  
-  if (NR == 2 || $8 < min_total_cost) min_total_cost = $8
-  if (NR == 2 || $8 > max_total_cost) max_total_cost = $8
-  
-  count++
+  # Only process rows with valid cost and turns
+  if ($3 > 0 && $7 > 0) {
+    # Store values in arrays
+    cost_usd[NR] = $3
+    duration_ms[NR] = $5
+    duration_api_ms[NR] = $6
+    num_turns[NR] = $7
+    total_cost[NR] = $8
+    
+    # Running sums
+    sum_cost += $3
+    sum_duration_ms += $5
+    sum_duration_api_ms += $6
+    sum_num_turns += $7
+    sum_total_cost += $8
+    
+    # Track min/max
+    if (count == 0 || $3 < min_cost) min_cost = $3
+    if (count == 0 || $3 > max_cost) max_cost = $3
+    
+    if (count == 0 || $5 < min_duration_ms) min_duration_ms = $5
+    if (count == 0 || $5 > max_duration_ms) max_duration_ms = $5
+    
+    if (count == 0 || $6 < min_duration_api_ms) min_duration_api_ms = $6
+    if (count == 0 || $6 > max_duration_api_ms) max_duration_api_ms = $6
+    
+    if (count == 0 || $7 < min_turns) min_turns = $7
+    if (count == 0 || $7 > max_turns) max_turns = $7
+    
+    if (count == 0 || $8 < min_total_cost) min_total_cost = $8
+    if (count == 0 || $8 > max_total_cost) max_total_cost = $8
+    
+    count++
+  }
 }
 
 END {
@@ -116,9 +119,11 @@ END {
 
     # Per iteration statistics (one iteration = one line in the CSV)
     printf "\nPER ITERATION METRICS:\n"
-    printf "%-19s| %10.2f | %10.2f | %10.2f | %10.2f | %10.2f |\n", "Cost per iter ($)", mean_cost, std_cost, min_cost, max_cost, sum_cost / count
-    printf "%-19s| %10.2f | %10.2f | %10.2f | %10.2f | %10.2f |\n", "Time per iter (sec)", mean_duration_s, std_duration_s, min_duration_s, max_duration_s, sum_duration_s / count
-    printf "%-19s| %10.1f | %10.1f | %10.0f | %10.0f | %10.1f |\n", "Turns per iter", mean_num_turns, std_num_turns, min_turns, max_turns, sum_num_turns / count
+    printf "%-19s| %10s | %10s | %10s | %10s |\n", "METRIC", "MEAN", "STD", "MIN", "MAX"
+    printf "%-19s|-%10s-|-%10s-|-%10s-|-%10s-|\n", "-------------------", "----------", "----------", "----------", "----------"
+    printf "%-19s| %10.2f | %10.2f | %10.2f | %10.2f |\n", "Cost per iter ($)", mean_cost, std_cost, min_cost, max_cost
+    printf "%-19s| %10.2f | %10.2f | %10.2f | %10.2f |\n", "Time per iter (sec)", mean_duration_s, std_duration_s, min_duration_s, max_duration_s
+    printf "%-19s| %10.1f | %10.1f | %10.0f | %10.0f |\n", "Turns per iter", mean_num_turns, std_num_turns, min_turns, max_turns
   } else {
     print "No data found in CSV file!"
   }
